@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+  xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:vm="clr-namespace:MyApp"
+  x:Class="MyApp.CarouselPage"
+  x:DataType="vm:CarouselPageViewModel"
+  Title="CarouselPage"
+  Padding="10"
+  >
+  <CarouselView
+    ItemsSource="{Binding MyItems, Mode=OneWay}"
+    Position="{Binding MyPosition, Mode=TwoWay}"
+    ItemsUpdatingScrollMode="KeepLastItemInView"
+    >
+    <CarouselView.ItemsLayout>
+      <LinearItemsLayout
+        Orientation="Horizontal"
+        SnapPointsAlignment="Center"
+        SnapPointsType="MandatorySingle" />
+    </CarouselView.ItemsLayout>
+
+    <CarouselView.ItemTemplate>
+      <DataTemplate x:DataType="vm:MyItemsViewModel">
+        <ScrollView>
+          <Frame Padding="10">
+            <Label Text="{Binding Label}"
+                 HorizontalOptions="Center" 
+                 VerticalOptions="Center"/>
+          </Frame>
+        </ScrollView>
+      </DataTemplate>
+    </CarouselView.ItemTemplate>
+  </CarouselView>
+
+</ContentPage>
